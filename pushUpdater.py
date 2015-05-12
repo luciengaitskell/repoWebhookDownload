@@ -13,11 +13,11 @@ branch=False
 
 if (len(sys.argv)>=5):
 	webserverFile=str(sys.argv[4])
-elif (len(sys.argv)>=4):
+if (len(sys.argv)>=4):
 	deployDir=str(sys.argv[3])
-elif (len(sys.argv)>=3):
+if (len(sys.argv)>=3):
 	repoName=str(sys.argv[2])
-elif (len(sys.argv)>=2):
+if (len(sys.argv)>=2):
 	branch=str(sys.argv[1])
 
 @app.route("/payload", methods=['POST'])
