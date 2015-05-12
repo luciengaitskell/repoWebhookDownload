@@ -31,9 +31,9 @@ def main():
 		subprocess.call("cd "
 		 + str(os.path.dirname(os.path.realpath(__file__)))
 		 + " && sudo ./download.sh "
-		 + deployDir + " "
-		 + repoName + " "
-		 + branch
+		 + str(deployDir) + " "
+		 + str(repoName) + " "
+		 + str(branch)
 		, shell=True)
 
 		if (webserverFile):
