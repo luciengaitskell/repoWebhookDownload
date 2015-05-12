@@ -1,17 +1,17 @@
 #!/bin/bash
 
-cd /var/www/Website-SST
+cd $1
 
 
-#if [ -d "Website-SST-master" ]; then
-#  sudo rm -rf Website-SST-master
-#fi
+if [ -d "$2-$3" ]; then
+  sudo rm -rf $2-$3
+fi
 
-#if [ -f "master.zip" ]; then
-#  sudo rm master.zip
-#fi
+if [ -f "$3.zip" ]; then
+  sudo rm $3.zip
+fi
 
 
 
-wget -N https://github.com/luciengaitskell/Website-SST/archive/master.zip
-sudo unzip master.zip
+wget -N https://github.com/luciengaitskell/$2/archive/$3.zip
+sudo unzip $3.zip

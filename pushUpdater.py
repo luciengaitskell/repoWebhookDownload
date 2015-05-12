@@ -5,26 +5,38 @@ import sys
 
 app = Flask(__name__)
 
-if (sys.argv=>2):
+webserverFile=False
+deployDir=False
+repoName=False
+branch=False
+
+
+if (len(sys.argv)=>5):
+	webserverFile=str(sys.argv[4])
+elif (len(sys.argv)=>4):
+	deployDir=str(sys.argv[3])
+elif (len(sys.argv)=>3):
+	repoName=str(sys.argv[2])
+elif (len(sys.argv)=>2):
 	branch=str(sys.argv[1])
-else:
-	branch=True
 
 @app.route("/payload", methods=['POST'])
 def main():
 	theJSON = request.get_json()
-	if branch or branch in theJSON["ref"]:
+	if ( not branch or branch in theJSON["ref"]):
 		#runs only if the branch commited to is the one supplied by the command line arg or if there isn't one
-		if (len(sys.argv)=>5):
-			webserverFile=str(sys.argv[4])
+		if (webserverFile):
 			subprocess.call("sudo pkill -f " + str(webserverFile), shell=True)
 
 		subprocess.call("cd "
 		 + str(os.path.dirname(os.path.realpath(__file__)))
-		 + " && sudo ./download.sh"
+		 + " && sudo ./download.sh "
+		 + deployDir + " "
+		 + repoName + " "
+		 + branch
 		, shell=True)
 
-		if (len(sys.argv)=>5):
+		if (webserverFile):
 			subprocess.call("sudo screen -d -m  python " + str(webserverFile), shell=True)
 		return "Commit to master -- redownloading repo"
 	return "Not committing to wanted branch -- ignoring"
