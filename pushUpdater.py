@@ -25,7 +25,6 @@ def main():
 	theJSON = request.get_json()
 	if ( not branch or branch in theJSON["ref"]):
 		#runs only if the branch commited to is the one supplied by the command line arg or if there isn't one
-		return str("poo")
 		if (webserverFile):
 			subprocess.call("sudo pkill -f " + str(webserverFile), shell=True)
 
