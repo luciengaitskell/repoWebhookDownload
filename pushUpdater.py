@@ -10,7 +10,7 @@ deployDir=False
 repoName=False
 branch=False
 
-
+return str(sys.argv)
 if (len(sys.argv)>=5):
 	webserverFile=str(sys.argv[4])
 elif (len(sys.argv)>=4):
