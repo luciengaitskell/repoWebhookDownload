@@ -27,7 +27,7 @@ def main():
 		#runs only if the branch commited to is the one supplied by the command line arg or if there isn't one
 		if (webserverFile):
 			subprocess.call("sudo pkill -f " + str(webserverFile), shell=True)
-
+		return "shite"
 		subprocess.call("cd "
 		 + str(os.path.dirname(os.path.realpath(__file__)))
 		 + " && sudo bash download.sh "
