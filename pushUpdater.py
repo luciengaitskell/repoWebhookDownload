@@ -10,7 +10,7 @@ deployDir=False
 repoName=False
 branch=False
 
-return str(sys.argv)
+
 if (len(sys.argv)>=5):
 	webserverFile=str(sys.argv[4])
 elif (len(sys.argv)>=4):
@@ -22,6 +22,7 @@ elif (len(sys.argv)>=2):
 
 @app.route("/payload", methods=['POST'])
 def main():
+	return str(sys.argv)
 	theJSON = request.get_json()
 	if ( not branch or branch in theJSON["ref"]):
 		#runs only if the branch commited to is the one supplied by the command line arg or if there isn't one
