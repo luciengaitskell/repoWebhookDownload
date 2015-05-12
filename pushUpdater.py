@@ -5,9 +5,6 @@ import sys
 
 app = Flask(__name__)
 
-
-
-
 if (sys.argv=>2):
 	branch=str(sys.argv[1])
 else:
