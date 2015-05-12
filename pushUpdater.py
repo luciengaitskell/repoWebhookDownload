@@ -22,7 +22,6 @@ if (len(sys.argv)>=2):
 
 @app.route("/payload", methods=['POST'])
 def main():
-	return str(sys.argv)
 	theJSON = request.get_json()
 	if ( not branch or branch in theJSON["ref"]):
 		#runs only if the branch commited to is the one supplied by the command line arg or if there isn't one
@@ -31,7 +30,7 @@ def main():
 
 		subprocess.call("cd "
 		 + str(os.path.dirname(os.path.realpath(__file__)))
-		 + " && sudo ./download.sh "
+		 + " && sudo bash download.sh "
 		 + str(deployDir) + " "
 		 + str(repoName) + " "
 		 + str(branch)
