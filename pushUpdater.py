@@ -5,20 +5,28 @@ import sys
 
 app = Flask(__name__)
 
+def ifNotInt(inputString,default_val):
+	if (inputString.isdigit()==True):
+		return int(inputString)
+	else:
+		return default_val
+
 webserverFile=False
 deployDir=False
 repoName=False
 branch=False
+runPort=4567
 
-
+if (len(sys.argv)>=6):
+	webserverFile=str(sys.argv[5])
 if (len(sys.argv)>=5):
-	webserverFile=str(sys.argv[4])
+	deployDir=str(sys.argv[4])
 if (len(sys.argv)>=4):
-	deployDir=str(sys.argv[3])
+	repoName=str(sys.argv[3])
 if (len(sys.argv)>=3):
-	repoName=str(sys.argv[2])
+	branch=str(sys.argv[2])
 if (len(sys.argv)>=2):
-	branch=str(sys.argv[1])
+	runPort=ifNotInt(sys.argv[2],runPort)
 
 @app.route("/payload", methods=['POST'])
 def main():
@@ -45,5 +53,5 @@ if __name__ == "__main__":
 	app.debug = True
 	app.run(
 		host='0.0.0.0',
-		port=4567
+		port=runPort
 		)
