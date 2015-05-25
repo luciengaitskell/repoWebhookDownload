@@ -28,8 +28,8 @@ if (len(sys.argv)>=3):
 	branch=str(sys.argv[2])
 if (len(sys.argv)>=2):
 	runPort=ifNotInt(sys.argv[1],runPort)
-	print(str(ifNotInt(sys.argv[1],runPort)))
-	print(sys.argv[1])
+	#print(str(ifNotInt(sys.argv[1],runPort)))
+	#print(str(sys.argv[1]))
 
 @app.route("/payload", methods=['POST'])
 def main():
