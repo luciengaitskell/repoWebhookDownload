@@ -20,6 +20,7 @@ runPort=4567
 
 if (len(sys.argv)>=6):
 	webserverFile=str(sys.argv[5])
+	print(webserverFile)
 if (len(sys.argv)>=5):
 	deployDir=str(sys.argv[4])
 if (len(sys.argv)>=4):
