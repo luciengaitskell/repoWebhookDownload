@@ -2,6 +2,7 @@ from flask import Flask, request
 import subprocess
 import os
 import sys
+import pipes
 
 app = Flask(__name__)
 
@@ -38,7 +39,7 @@ def main():
 	if ( not branch or branch in theJSON["ref"]):
 		#runs only if the branch commited to is the one supplied by the command line arg or if there isn't one
 		if (webserverFile):
-			subprocess.call("sudo pkill -f " + str(webserverFile), shell=True)
+			subprocess.call("sudo pkill -f " + pipes.quote(str(webserverFile)), shell=True)
 
 		subprocess.call("cd "
 		 + str(os.path.dirname(os.path.realpath(__file__)))
@@ -49,7 +50,7 @@ def main():
 		, shell=True)
 
 		if (webserverFile):
-			subprocess.call("sudo screen -d -m  python " + str(webserverFile), shell=True)
+			subprocess.call("sudo screen -d -m  python " + pipes.quote(str(webserverFile)), shell=True)
 		return "Commit to master -- redownloading repo"
 	return "Not committing to wanted branch -- ignoring"
 
